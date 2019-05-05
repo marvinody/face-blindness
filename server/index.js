@@ -9,7 +9,7 @@ app.use(volleyball)
 
 // Body parsing middleware
 app.use(express.json())
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({ extended: true }))
 
 // Static file-serving middleware
 app.use(express.static(path.join(__dirname, '..', 'public')))
@@ -35,16 +35,6 @@ app.use((req, res, next) => {
 // Sends our index.html (the "single page" of our SPA)
 app.get('/', (req, res, next) => {
   res.sendFile(path.join(__dirname, '..', 'client', 'index.html'))
-})
-
-// Two temporary routes to serve up our HTML mocks
-// We'll remove these when we're done
-app.get('/mock-1', (req, res, next) => {
-  res.sendFile(path.join(__dirname, '..', 'public', 'juke-mock-1.html'))
-})
-
-app.get('/mock-2', (req, res, next) => {
-  res.sendFile(path.join(__dirname, '..', 'public', 'juke-mock-2.html'))
 })
 
 // Error catching endware
