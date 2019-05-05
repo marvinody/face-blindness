@@ -67,10 +67,14 @@ td {
 #main {
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 
 /* classes */
+.person.image.list {
+  display:flex;
+}
 .album {
   margin: 1em;
 }

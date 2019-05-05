@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import LearningPersons from './LearningPersons';
+import PersonImageList from './PersonImageList';
 export default class Main extends React.Component {
   constructor() {
     super();
@@ -8,6 +9,9 @@ export default class Main extends React.Component {
       people: [],
       learning: {
         still: true,
+        idx: 0,
+      },
+      guessing: {
         idx: 0,
       }
     }
@@ -26,6 +30,7 @@ export default class Main extends React.Component {
       this.setState({
         learning: {
           still: false,
+          idx: this.state.people.length,
         }
       })
     }
@@ -47,6 +52,7 @@ export default class Main extends React.Component {
     return (
       <div id="main" className="row container">
         {body}
+        <PersonImageList people={this.state.people} learningIdx={this.state.learning.idx} guessingIdx={this.state.guessing.idx} />
       </div>
     )
   }
