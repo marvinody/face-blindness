@@ -62,81 +62,47 @@ td {
 #app {
   height: 100%;
   width: 100%;
-  overflow: scroll;
 }
 
-#albums {
-  margin: 2em;
-}
-
-#logo {
-  max-height: 100px;
-  max-width: 100px;
-}
-
-#main > div.container {
-  margin-left: 150px;
-}
-
-#player-container {
-  position: fixed;
-  height: 56px;
-  width: 100%;
-  bottom: 0;
-}
-
-#player-controls {
-  background-color: #333;
-  box-shadow: 0px -2px 2px #5a5a5a;
-  height: 100%;
-}
-
-#player-controls > div {
-  height: 100%;
+#main {
+  justify-content: center;
   align-items: center;
 }
 
-#player-controls i {
-  font-size: 2em;
-  padding: 0 0.5em;
-}
-
-#player-controls i:nth-child(2) {
-  font-size: 3em;
-}
-
-#sidebar {
-  min-width: 150px;
-  height: 100%;
-  background-color: #333;
-  border-right: 1px solid gray;
-  text-align: center;
-  position: fixed;
-}
-
-#sidebar img {
-  padding-top: 10px;
-}
-
-#sidebar section {
-  text-align: left;
-  padding-left: 10px;
-}
-
-#sidebar a {
-  transition: border 0.2s ease;
-  cursor: pointer;
-}
-
-#sidebar a:hover {
-  border-bottom: 2px solid #00aaaa;
-}
 
 /* classes */
 .album {
   margin: 1em;
 }
-
+.learning.person{
+display:flex;
+flex-direction: column;
+}
+.person.name {
+  text-align:center;
+}
+.person.profile {
+  max-width:128px;
+  display:flex;
+  justify-content: center;
+  flex-direction:column;
+}
+.person.profile > div {
+  display:flex;
+  justify-content: center;
+}
+.person.next {
+  text-align:center;
+  padding:5px;
+  background-color:rgb(61.2%, 66.7%, 78%);
+  cursor: pointer;
+}
+.person.next:hover {
+  background-color:rgb(59.6%, 65.1%, 76.1%);
+}
+.person.next:active {
+  background-color:rgb(29.8%, 40.4%, 63.1%)
+}
 .album img {
   height: 200px;
   width: 200px;

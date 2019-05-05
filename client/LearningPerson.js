@@ -3,9 +3,9 @@ import Person from './Person';
 
 const LearningPerson = (props) => {
   return (
-    <div className="learning-person">
+    <div className="learning person">
       <Person person={props.person} />
-      <span>Next</span>
+      <span className="next person">Next</span>
     </div>
   )
 }
