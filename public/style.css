@@ -80,6 +80,7 @@ flex-direction: column;
 }
 .person.name {
   text-align:center;
+  text-transform: capitalize;
 }
 .person.profile {
   max-width:128px;

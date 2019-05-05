@@ -11,6 +11,24 @@ export default class Main extends React.Component {
         idx: 0,
       }
     }
+    this.nextPerson = this.nextPerson.bind(this);
+  }
+  nextPerson() {
+    let newIdx = this.state.learning.idx + 1;
+    if (newIdx < this.state.people.length && this.state.learning.still) {
+      this.setState({
+        learning: {
+          still: true,
+          idx: newIdx,
+        }
+      })
+    } else {
+      this.setState({
+        learning: {
+          still: false,
+        }
+      })
+    }
   }
   async componentDidMount() {
     const res = await axios.get('/api/people/random?limit=9')
@@ -22,9 +40,9 @@ export default class Main extends React.Component {
   render() {
     let body;
     if (this.state.learning.still) {
-      body = <LearningPersons people={this.state.people} idx={this.state.learning.idx} />
+      body = <LearningPersons nextPerson={this.nextPerson} people={this.state.people} idx={this.state.learning.idx} />
     } else {
-
+      body = <h1>UNIMPLEMENTED</h1>
     }
     return (
       <div id="main" className="row container">

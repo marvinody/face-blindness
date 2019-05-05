@@ -5,7 +5,7 @@ const LearningPersons = props => {
   const person = props.people[props.idx];
   let body = <h1>Loading Data</h1>
   if (props.people.length > 0) {
-    body = <LearningPerson person={person} />
+    body = <LearningPerson nextPerson={props.nextPerson} person={person} idx={props.idx} count={props.people.length} />
   }
   return (
     <div>
