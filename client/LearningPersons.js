@@ -8,7 +8,7 @@ const LearningPersons = props => {
     body = <LearningPerson nextPerson={props.nextPerson} person={person} idx={props.idx} count={props.people.length} />
   }
   return (
-    <div>
+    <div className="person learning main">
       {body}
     </div>
   )

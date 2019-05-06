@@ -36,7 +36,7 @@ export default class Main extends React.Component {
     }
   }
   async componentDidMount() {
-    const res = await axios.get('/api/people/random?limit=9')
+    const res = await axios.get('/api/people/random?limit=8')
     this.setState({
       people: res.data
     })

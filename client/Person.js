@@ -4,7 +4,7 @@ function capitalizeName(name) {
 }
 const Person = (props) => {
   // const name = capitalizeName(props.person.firstName) + ' ' + capitalizeName(props.person.lastName);
-  const name = props.person.firstName + ' ' + props.person.lastName;
+  const name = props.person.firstName
   return (
     <div className="person profile">
       <div>

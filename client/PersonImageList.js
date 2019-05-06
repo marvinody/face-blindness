@@ -9,8 +9,8 @@ const PersonImageList = props => {
           picture = person.image;
         }
         return (
-          <div key={person.id} >
-            <img src={picture} width="128" height="128" />
+          <div key={person.id} className="person headshot" >
+            <img src={picture} width="64" height="64" />
           </div>
         )
       })}

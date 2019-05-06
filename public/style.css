@@ -68,12 +68,25 @@ td {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  display:flex;
 }
 
 
 /* classes */
+.person.learning.main {
+  display:flex;
+  align-items:center;
+  flex:2;
+  justify-content: center;
+}
+.person.headshot {
+  filter:grayscale(90%);
+}
 .person.image.list {
   display:flex;
+  justify-content: space-around;
+  width:70%;
+  flex:1;
 }
 .album {
   margin: 1em;
