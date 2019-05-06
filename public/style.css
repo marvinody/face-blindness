@@ -73,13 +73,31 @@ td {
 
 
 /* classes */
-.person.learning.main {
+.person.main {
   display:flex;
   align-items:center;
   flex:2;
   justify-content: center;
+  flex-direction:column;
 }
-.person.headshot {
+.names {
+  display:flex;
+  justify-content: space-between;
+}
+.names > span {
+  text-align:center;
+  padding:5px;
+  margin:5px;
+  background-color:rgb(61.2%, 66.7%, 78%);
+  cursor: pointer;
+}
+.names > span:hover {
+  background-color:rgb(59.6%, 65.1%, 76.1%);
+}
+.names > span:active {
+  background-color:rgb(29.8%, 40.4%, 63.1%)
+}
+.person.headshot.inactive {
   filter:grayscale(90%);
 }
 .person.image.list {
