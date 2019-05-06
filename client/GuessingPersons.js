@@ -9,7 +9,7 @@ const GuessingPersons = props => {
         <img src={person.image} />
       </div>
       <div className="names">
-        {shuffle(names).map((n, idx) => <span key={idx}>{n}</span>)}
+        {shuffle(names).map((n, idx) => <span key={idx} onClick={() => props.guessPerson(n)}>{n}</span>)}
       </div>
     </div>
   )

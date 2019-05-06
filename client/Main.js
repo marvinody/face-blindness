@@ -3,6 +3,7 @@ import React from 'react';
 import GuessingPersons from './GuessingPersons';
 import LearningPersons from './LearningPersons';
 import PersonImageList from './PersonImageList';
+import Results from './Results';
 const states = Object.freeze({
   LEARNING: Symbol('learning'),
   GUESSING: Symbol('guessing'),
@@ -23,8 +24,8 @@ export default class Main extends React.Component {
         peopleGuessed: [],
       },
       results: {
-        correct: 0,
-        incorrect: 0,
+        correct: [],
+        incorrect: [],
       }
     }
     this.nextPersonToLearn = this.nextPersonToLearn.bind(this);
@@ -32,36 +33,59 @@ export default class Main extends React.Component {
     this.guessPerson = this.guessPerson.bind(this);
   }
   guessPerson(name) {
+    const idx = this.state.guessing.idx;
     const actualPerson = this.state.people[this.state.guessing.idx]
-    if (actualPerson.name === name) {
-      this.setState({
-        results: { correct: this.state.results.correct + 1 }
-      })
-    } else {
-      this.setState({
-        results: { incorrect: this.state.results.incorrect + 1 }
-      })
-    }
+    this.setState(prev => {
+      if (actualPerson.firstName === name) {
+        return ({
+          results: { correct: prev.results.correct.concat(idx), incorrect: prev.results.incorrect }
+        })
+      } else {
+        return ({
+          results: { correct: prev.results.correct, incorrect: prev.results.incorrect.concat(idx) }
+        })
+      }
+    })
+    this.setState(prev => ({
+      guessing: {
+        idx: -1,
+        wrongNames: [],
+        peopleGuessed: [...prev.guessing.peopleGuessed, idx],
+      }
+    }))
+    this.nextPersonToGuess();
   }
   nextPersonToGuess() {
-    if (this.state.guessing.peopleGuessed.length === this.state.people.length) {
-      this.setState({
-        mode: states.RESULTS,
-      })
-    } else {
-      const idxs = this.state.people.map((_, idx) => idx);
-      const unpicked = idxs.filter(idx => !this.state.guessing.peopleGuessed.includes(idx));
+    this.setState(prev => {
+      const idxs = prev.people.map((_, idx) => idx);
+      console.log('guessed:', prev.guessing.peopleGuessed.join(', '))
+      const unpicked = idxs.filter(idx => !prev.guessing.peopleGuessed.includes(idx));
+      console.log('unpicked:', unpicked.join(', '))
       const currentToGuess = unpicked[Math.random() * unpicked.length | 0]
+      console.log('new person to guess:' + currentToGuess);
       const everyoneElse = this.state.people.filter((_, idx) => idx !== currentToGuess);
       const wrongNames = shuffle(everyoneElse).slice(0, 2).map(p => p.firstName);
-      this.setState({
+      return {
         guessing: {
           idx: currentToGuess,
           wrongNames,
-          peopleGuessed: this.state.guessing.peopleGuessed,
+          peopleGuessed: prev.guessing.peopleGuessed,
         }
-      })
-    }
+      }
+    });
+    this.setState(prev => {
+      if (prev.guessing.peopleGuessed.length === prev.people.length) {
+        return {
+          mode: states.RESULTS,
+          guessing: {
+            idx: -1,
+            peopleGuessed: prev.guessing.peopleGuessed
+          }
+        }
+      } else {
+        return prev;
+      }
+    });
   }
   nextPersonToLearn() {
     let newIdx = this.state.learning.idx + 1;
@@ -91,13 +115,15 @@ export default class Main extends React.Component {
     let body;
     if (this.state.mode === states.LEARNING) {
       body = <LearningPersons nextPerson={this.nextPersonToLearn} people={this.state.people} idx={this.state.learning.idx} />
-    } else {
+    } else if (this.state.mode === states.GUESSING) {
       body = <GuessingPersons nextPerson={this.nextPersonToGuess} guessing={this.state.guessing} people={this.state.people} guessPerson={this.guessPerson} />
+    } else {
+      body = <Results results={this.state.results} />
     }
     return (
       <div id="main" className="row container">
         {body}
-        <PersonImageList people={this.state.people} learningIdx={this.state.learning.idx} guessingIdx={this.state.guessing.idx} />
+        <PersonImageList people={this.state.people} learningIdx={this.state.learning.idx} guessingIdx={this.state.guessing.idx} results={this.state.results} />
       </div>
     )
   }
