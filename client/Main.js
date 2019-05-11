@@ -58,11 +58,8 @@ export default class Main extends React.Component {
   nextPersonToGuess() {
     this.setState(prev => {
       const idxs = prev.people.map((_, idx) => idx);
-      console.log('guessed:', prev.guessing.peopleGuessed.join(', '))
       const unpicked = idxs.filter(idx => !prev.guessing.peopleGuessed.includes(idx));
-      console.log('unpicked:', unpicked.join(', '))
       const currentToGuess = unpicked[Math.random() * unpicked.length | 0]
-      console.log('new person to guess:' + currentToGuess);
       const everyoneElse = this.state.people.filter((_, idx) => idx !== currentToGuess);
       const wrongNames = shuffle(everyoneElse).slice(0, 2).map(p => p.firstName);
       return {

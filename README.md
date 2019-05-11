@@ -1,4 +1,4 @@
-# Juke
+# Face Blindness
 
 ## Setup
 
@@ -8,9 +8,5 @@
 * `npm start`
 * Open another terminal window; from there, `npm run seed` to seed the database
 
-### Windows
-
-* `npm install`
-* `npm run build-watch` to start the webpack process
-* Open another terminal window; from there, `npm run start-server` to start the server process
-* Open another terminal window; from there, `npm run seed` to seed the database
+## Why?
+Because I was bored and it was decent react practice. I'm really bad with learning names and this didn't do anything to help that. Was kinda fun to make though.
